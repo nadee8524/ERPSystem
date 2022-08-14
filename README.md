@@ -38,7 +38,7 @@ This project is an ERP System, build by using PHP and MySQL.This will provide cu
 - First install a server which supports PHP and MYSQL(I used XAMPP).
 - Copy project folder to its root folder (In XAMPP htdocs)
 - Import database file to MYSQL server (PhpMyAdmin for XAMPP)
-- In your browser run project using http://localhost:88/erpsystem/home/index 
+- In your browser run project using http://localhost/erpsystem/home/index 
 
 ### Important
 
