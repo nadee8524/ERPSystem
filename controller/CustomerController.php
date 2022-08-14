@@ -44,15 +44,15 @@ class CustomerController extends BaseController
 
         $customer = new Customer();
 
-        $customer->id = $cusData['cusId'];
+        // $customer->id = $cusData['cusId'];
         $customer->title = $cusData['title'];
         $customer->first_name = $cusData['fName'];
         $customer->middle_name = $cusData['mName'];
         $customer->last_name = $cusData['lName'];
-        $customer->contact_to = $cusData['contact'];
+        $customer->contact_no = $cusData['contact'];
         $customer->district = $cusData['district'];
 
-        $res = $customer->update();
+        $res = $customer->save();
         echo json_encode($res);
         if (!$res) {
             header("HTTP/1.1 500 Internal Server Error");

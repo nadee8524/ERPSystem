@@ -41,19 +41,19 @@
                                             <!-- Date dd/mm/yyyy -->
                                             <div class="form-group">
                                                 <label for="inputFname">First Name</label>
-                                                <input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="txtFName">
+                                                <input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="txtFName" required>
                                             </div><!-- /.form group -->
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="inputCusmname">Middle Name</label>
-                                        <input type="text" class="form-control" id="cusMName" placeholder="Enter Middle Name" name="txtCusMName">
+                                        <input type="text" class="form-control" id="cusMName" placeholder="Enter Middle Name" name="txtCusMName" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="inputCuslname">Last Name</label>
-                                        <input type="text" class="form-control" id="cusLName" placeholder="Enter Last Name" name="txtCusMName">
+                                        <input type="text" class="form-control" id="cusLName" placeholder="Enter Last Name" name="txtCusMName" required>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="inputTelephone">Contact Number</label>
-                                        <input type="text" class="form-control" id="contact" placeholder="Enter Contact Number" name="txtCont">
+                                        <input type="text" class="form-control" id="contact" placeholder="Enter Contact Number" name="txtCont" required>
                                     </div>
 
                                     <div class="form-group">
@@ -78,7 +78,7 @@
                         <!--row-->
                         <div class="box-footer">
                             <!--<button type="submit" name="updatecus" id="updatecus" class="btn btn-primary">Update</button>-->
-                            <input type="button" name="submit" id="btnUpdate" class="btn btn-primary" value="Submit">
+                            <input type="button" name="submit" id="btnUpdate" class="btn btn-primary" value="Update">
                             <!--<button type="submit" name="submit" onclick="submitForm('CollectionScheduleReport.php')" class="btn btn-primary"><i class="fa fa-print"> </i> Print</button>-->
                             <script>
                                 function submitForm(action) {
@@ -171,13 +171,14 @@
                     "bFilter": true,
                     "bSort": true,
                     "bInfo": true,
+                    "bRetrieve": true,
                     "bAutoWidth": false
                 });
             }
         };
     }
     //Load Customers
-    $('table tbody').on('click', '.btn', function() {
+    $('table tbody').on('click', '#btnView', function() {
         var currow = $(this).closest('tr');
         var cusName = currow.find('td:eq(2)').text().split(" ");
         $("#id").val(currow.find('td:eq(0)').text());
@@ -193,9 +194,11 @@
     $(document).ready(function() {
         $("#frmCusList").validate({
             rules: {
-                email: {
-                    required: true,
-                    pattern: /^[a-zA-Z0-9_\.]{3,}@([a-zA-Z0-9_]{3,})(\.[a-zA-Z0-9\_]{2,})+$/
+                fname,
+                cusMName,
+                cusLName,
+                contact: {
+                    required: true
                 }
             }
         });
@@ -224,6 +227,7 @@
                 <div class = "box-header"><h3 class = "box-title"> Success! </h3></div>\n\
 <div class = "box-body">Customer Successfully Updated.</div></div>');
                         //                        alert("Successfully registered!");
+                        $('#table1').find("tr:gt(0)").remove();
                         loadCustomers();
                         console.log(data);
                         $(frmCusList).closest('form').find("input[type=text],input[type=tel],input[type=email],textarea").val("");

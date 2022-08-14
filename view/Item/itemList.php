@@ -179,6 +179,7 @@
                     "bFilter": true,
                     "bSort": true,
                     "bInfo": true,
+                    "bRetrieve": true,
                     "bAutoWidth": false
                 });
             }
@@ -186,7 +187,7 @@
     }
 
     //load items
-    $('table tbody').on('click', '.btn', function() {
+    $('table tbody').on('click', '#btnView', function() {
         var currow = $(this).closest('tr');
         $("#id").val(currow.find('td:eq(0)').text());
         $("#itemid").val(currow.find('td:eq(1)').text());
@@ -211,7 +212,6 @@
                     qty: $("#qty").val(),
                     price: $("#price").val()
                 };
-
                 $.ajax({
                     url: "<?= APPROOT ?>/item/updateItem",
                     type: "POST",
@@ -224,6 +224,8 @@
                 <div class = "box-header"><h3 class = "box-title"> Success! </h3></div>\n\
 <div class = "box-body">Item Successfully Updated.</div></div>');
                         //                        alert("Successfully registered!");
+                        $('#table1').find("tr:gt(0)").remove();
+                        loadItem();
                         console.log(data);
                         $(frmItemList).closest('form').find("input[type=text],input[type=tel],input[type=email],textarea").val("");
                     },

@@ -12,7 +12,6 @@ and open the template in the editor.
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <script src="<?= RESOURCES ?>vendor/jquery.min.js"></script>
     <script src="<?= RESOURCES ?>vendor/pagination.min.js"></script>
-    <!--         Bootstrap 3.3.2 -->
     <link href="<?= RESOURCES ?>bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!--Font Awesome Icons-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -29,14 +28,6 @@ and open the template in the editor.
     <script src="<?= RESOURCES ?>vendor/jquery.validate.min.js"></script>
     <script src="<?= RESOURCES ?>plugins/daterangepicker/daterangepicker.js"></script>
     <script src="<?= RESOURCES ?>plugins/pdf/jspdf.min.js"></script>
-    <!--<link href="../<?= RESOURCES ?>plugins/morris/morris.css" rel="stylesheet" type="text/css" />-->
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
 </head>
 
 <body class="skin-blue">
@@ -89,21 +80,6 @@ and open the template in the editor.
                             <i class="fa fa-circle-o"></i>
                             <span>Item Report</span>
                         </a>
-                    </li>
-                    <li class="treeview" id="rSales">
-                        <a href="#">
-                            <i class="fa fa-book"></i>
-                            <span>Sales</span>
-                            <span class="label label-primary pull-right"></span>
-                        </a>
-                        <!-- <ul class="treeview-menu">
-                            <li><a href="../Report/CustomerRegister"><i class="fa fa-circle-o"></i>Customer Register</a></li>
-                            <li><a href="../Report/InvoiceSummeryDateRange"><i class="fa fa-circle-o"></i>Invoice Summery - Date Range</a></li>
-                            <li><a href="../Report/CustomerWiseInvoiceSummery"><i class="fa fa-circle-o"></i>Invoice Summery - Customer</a></li>
-                            <li><a href="../Report/ItemWiseSalesSummery"><i class="fa fa-circle-o"></i>Invoice Summery - Item</a></li>
-                            <li><a href="../Report/CustomerWisePayment"><i class="fa fa-circle-o"></i>Customer Payment - Customer</a></li>
-                            <li><a href="../Report/CusDuePayament"><i class="fa fa-circle-o"></i>Customer Due Payment</a></li>
-                        </ul> -->
                     </li>
                 </ul>
             </section>

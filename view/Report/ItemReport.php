@@ -61,7 +61,6 @@
                 html += "</tr>";
             }
             document.getElementById("data").innerHTML += html;
-            document.getElementById("total").innerHTML += total;
         }
     };
 
