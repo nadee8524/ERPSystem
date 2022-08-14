@@ -8,8 +8,7 @@ and open the template in the editor.
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="<?= RESOURCES ?>dist/logo2.png" type="image/x-icon">
-    <title>TopNotch</title>
+    <title>ERP System</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <script src="<?= RESOURCES ?>vendor/jquery.min.js"></script>
     <script src="<?= RESOURCES ?>vendor/pagination.min.js"></script>
