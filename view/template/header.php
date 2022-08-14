@@ -72,38 +72,24 @@ and open the template in the editor.
                         </a>
                     </li>
                     <li class="header">REPORTS</li>
-                    <li class="treeview" id="rstock">
-                        <a href="#">
-                            <i class="fa fa-book"></i>
-                            <span>Inventory</span>
-                            <span class="label label-primary pull-right"></span>
+
+                    <li class="treeview" id="salesSli">
+                        <a href="../Report/InvoiceSummeryDateRange">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Invoice Summery - Date Range</span>
                         </a>
-                        <ul class="treeview-menu">
-                            <li><a href="../Report/rawMaterialStock"><i class="fa fa-circle-o"></i>Raw Material Stock</a></li>
-                            <li><a href="../Report/itemStock"><i class="fa fa-circle-o"></i>Item Stock</a></li>
-                        </ul>
                     </li>
-                    <li class="treeview" id="rProcurement">
-                        <a href="#">
-                            <i class="fa fa-book"></i>
-                            <span>Procurement</span>
-                            <span class="label label-primary pull-right"></span>
+                    <li class="treeview" id="salesSli">
+                        <a href="../Report/ItemWiseInvoiceSummeryDateRange">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Item Wise Invoice Summery - Date Range</span>
                         </a>
-                        <ul class="treeview-menu">
-                            <li><a href="../Report/SupplierRegister"><i class="fa fa-circle-o"></i>Supplier Register</a></li>
-                            <li><a href="../Report/GRNSummeryDateRange"><i class="fa fa-circle-o"></i>GRN Summery - Date Range</a></li>
-                            <li><a href="../Report/SupplierWisePayment"><i class="fa fa-circle-o"></i>Supplier Payment - Supplier</a></li>
-                        </ul>
                     </li>
-                    <li class="treeview" id="rManufacture">
-                        <a href="#">
-                            <i class="fa fa-book"></i>
-                            <span>Manufacture</span>
-                            <span class="label label-primary pull-right"></span>
+                    <li class="treeview" id="salesSli">
+                        <a href="../Report/ItemReport">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Item Report</span>
                         </a>
-                        <ul class="treeview-menu">
-                            <li><a href="../Report/ManufactureDateRange"><i class="fa fa-circle-o"></i>Manufacture Summery</a></li>
-                        </ul>
                     </li>
                     <li class="treeview" id="rSales">
                         <a href="#">
@@ -111,14 +97,14 @@ and open the template in the editor.
                             <span>Sales</span>
                             <span class="label label-primary pull-right"></span>
                         </a>
-                        <ul class="treeview-menu">
+                        <!-- <ul class="treeview-menu">
                             <li><a href="../Report/CustomerRegister"><i class="fa fa-circle-o"></i>Customer Register</a></li>
                             <li><a href="../Report/InvoiceSummeryDateRange"><i class="fa fa-circle-o"></i>Invoice Summery - Date Range</a></li>
                             <li><a href="../Report/CustomerWiseInvoiceSummery"><i class="fa fa-circle-o"></i>Invoice Summery - Customer</a></li>
                             <li><a href="../Report/ItemWiseSalesSummery"><i class="fa fa-circle-o"></i>Invoice Summery - Item</a></li>
                             <li><a href="../Report/CustomerWisePayment"><i class="fa fa-circle-o"></i>Customer Payment - Customer</a></li>
                             <li><a href="../Report/CusDuePayament"><i class="fa fa-circle-o"></i>Customer Due Payment</a></li>
-                        </ul>
+                        </ul> -->
                     </li>
                 </ul>
             </section>

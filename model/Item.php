@@ -36,4 +36,14 @@ class Item extends IdentifiedBaseModel
         }
         return $res;
     }
+
+    public function loadItem()
+    {
+        $result = mysqli_query($this->con, "SELECT `item_name`,item_category.category,item_subcategory.sub_category,quantity FROM `item` INNER JOIN item_category ON item.item_category=item_category.id INNER JOIN item_subcategory ON item.item_subcategory=item_subcategory.id ");
+        $data = array();
+        while ($row = mysqli_fetch_object($result)) {
+            array_push($data, $row);
+        }
+        echo json_encode($data);
+    }
 }

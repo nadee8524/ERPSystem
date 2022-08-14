@@ -18,7 +18,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="dateFrom"/>
+                                            <input type="text" class="form-control pull-right" id="dateFrom" />
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                 </div>
@@ -31,7 +31,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="dateTo"/>
+                                            <input type="text" class="form-control pull-right" id="dateTo" />
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                 </div>
@@ -46,9 +46,11 @@
                                     </div><!-- /.form group -->
                                 </div>
                             </div>
-                        </div><!--md-->
+                        </div>
+                        <!--md-->
                     </div>
-                </div><!--row-->
+                </div>
+                <!--row-->
             </form>
         </div><!-- /.box -->
     </section>
@@ -57,16 +59,14 @@
     <section class="invoice" id="report">
         <!-- title row -->
         <div class="row justify-content-between">
-            <div class="col-xs-10">
+            <div class="col-xs-12">
                 <h2 class="page-header">
                     Invoice Summery
                     <small id="date"></small>
                 </h2>
                 <h4 id="date"></h4>
             </div><!-- /.col -->
-            <div class="col-xs-2">
-                <small class="pull-right"><img src="<?= RESOURCES ?>dist/logo.png" width="70" height="35"></small>
-            </div><!-- /.col -->
+
         </div>
         <!-- info row -->
         <!-- Table row -->
@@ -78,9 +78,9 @@
                             <th>Invoice No </th>
                             <th>Date</th>
                             <th>Customer </th>
-                            <th>Net Amount</th>
-                            <th>Discount</th>
-                            <th class="text-center">Total Amount</th>
+                            <th>Customer District</th>
+                            <th>Item Count</th>
+                            <th>Invoice Amount</th>
                         </tr>
                     </thead>
                     <tbody id="data">
@@ -102,6 +102,7 @@
                             <th></th>
                             <th></th>
                             <th></th>
+                            <th></th>
                             <th class="text-right">Total:</th>
                             <td id="total" class="text-right"></td>
                         </tr>
@@ -118,14 +119,18 @@
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         document.getElementById("report").style.display = "none";
-        $('#dateFrom').datepicker({dateFormat: 'yy-mm-dd'}).datepicker('setDate', 'today');
-        $('#dateTo').datepicker({dateFormat: 'yy-mm-dd'}).datepicker('setDate', 'today');
+        $('#dateFrom').datepicker({
+            dateFormat: 'yy-mm-dd'
+        }).datepicker('setDate', 'today');
+        $('#dateTo').datepicker({
+            dateFormat: 'yy-mm-dd'
+        }).datepicker('setDate', 'today');
     });
 
-//Search 
-    $(document).on("click", "#btnSearch", function () {
+    //Search 
+    $(document).on("click", "#btnSearch", function() {
         document.getElementById("report").style.display = "block";
 
         var dateFrom = $('#dateFrom').val();
@@ -135,30 +140,32 @@
             toDate: $("#dateTo").val()
         };
         $.ajax({
-            url: "/TopNotch/invoice/retrieveInvoice",
+            url: "<?= APPROOT ?>/invoice/retrieveInvoice",
             method: "POST",
-            data: {sData: search},
+            data: {
+                sData: search
+            },
             dataType: "JSON",
-            success: function (data) {
+            success: function(data) {
                 $('#data').empty();
                 console.log(data);
                 var html = "";
                 var total = 0;
                 for (var a = 0; a < data.length; a++) {
-                    total = total + (parseFloat(data[a].totamount));
+                    total = total + (parseFloat(data[a].amount));
                     html += "<tr>";
-                    html += "<td>" + data[a].id + "</td>";
-                    html += "<td>" + formatDate(data[a].invdate) + "</td>";
-                    html += "<td>" + data[a].fname + " " + data[a].lname + "</td>";
-                    html += "<td>" + data[a].netamount + ".00</td>";
-                    html += "<td>" + (data[a].netamount * data[a].discount) / 100 + ".00</td>";
-                    html += "<td class='text-right'>" + data[a].totamount + ".00</td>";
+                    html += "<td>" + data[a].invoice_no + "</td>";
+                    html += "<td>" + formatDate(data[a].date) + "</td>";
+                    html += "<td>" + data[a].first_name + " " + data[a].middle_name + " " + data[a].last_name + "</td>";
+                    html += "<td>" + data[a].district + "</td>";
+                    html += "<td>" + data[a].item_count + "</td>";
+                    html += "<td class='text-right'>" + data[a].amount + ".00</td>";
                     html += "</tr>";
                 }
                 document.getElementById("data").innerHTML += html;
                 document.getElementById("total").innerHTML = total + ".00";
                 document.getElementById("date").innerHTML = "From: " +
-                        $('#dateFrom').val() + " To: " + $('#dateTo').val();
+                    $('#dateFrom').val() + " To: " + $('#dateTo').val();
             }
         });
     });
@@ -171,7 +178,7 @@
         return date = dd + "-" + mm + "-" + yyyy;
     }
 
-    $("#print").on('click', function () {
+    $("#print").on('click', function() {
         window.print();
     });
 </script>

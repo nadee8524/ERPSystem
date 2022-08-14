@@ -3,24 +3,14 @@
     <section class="content-header">
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">Supplier Payment - Supplier</h3>
+                <h3 class="box-title">Item Wise Invoice Summery - Date Range</h3>
             </div><!-- /.box-header -->
             <!-- form start -->
             <form>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-9">
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="box-body">
-                                    <div class="form-group">
-                                        <label>Supplier</label>
-                                        <select class="form-control" name="cmbSup" id="cmbSup">
-                                            <option></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label>From</label>
@@ -28,12 +18,12 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="dateFrom"/>
+                                            <input type="text" class="form-control pull-right" id="dateFrom" />
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label>To</label>
@@ -41,12 +31,12 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="dateTo"/>
+                                            <input type="text" class="form-control pull-right" id="dateTo" />
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label></label>
@@ -56,9 +46,11 @@
                                     </div><!-- /.form group -->
                                 </div>
                             </div>
-                        </div><!--md-->
+                        </div>
+                        <!--md-->
                     </div>
-                </div><!--row-->
+                </div>
+                <!--row-->
             </form>
         </div><!-- /.box -->
     </section>
@@ -67,16 +59,14 @@
     <section class="invoice" id="report">
         <!-- title row -->
         <div class="row justify-content-between">
-            <div class="col-xs-10">
+            <div class="col-xs-12">
                 <h2 class="page-header">
-                    Supplier Payment Summery
+                    Item Wise Invoice Summery
                     <small id="date"></small>
                 </h2>
                 <h4 id="date"></h4>
             </div><!-- /.col -->
-            <div class="col-xs-2">
-                <small class="pull-right"><img src="<?= RESOURCES ?>dist/logo.png" width="70" height="35"></small>
-            </div><!-- /.col -->
+
         </div>
         <!-- info row -->
         <!-- Table row -->
@@ -85,10 +75,12 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Payment No </th>
+                            <th>Invoice No </th>
                             <th>Date</th>
-                            <th>Supplier </th>
-                            <th class="text-center">Pay Amount</th>
+                            <th>Customer </th>
+                            <th>Item</th>
+                            <th>Item Category</th>
+                            <th>Unit Price</th>
                         </tr>
                     </thead>
                     <tbody id="data">
@@ -108,13 +100,13 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th class="text-right">Total:</th>
-                            <td id="total" class="text-right"></td>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </table>
                 </div>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
+            </div>
+        </div>
         <!-- this row will not appear when printing -->
         <div class="row no-print">
             <div class="col-xs-12">
@@ -124,64 +116,51 @@
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         document.getElementById("report").style.display = "none";
-        $('#dateFrom').datepicker({dateFormat: 'yy-mm-dd'}).datepicker('setDate', 'today');
-        $('#dateTo').datepicker({dateFormat: 'yy-mm-dd'}).datepicker('setDate', 'today');
+        $('#dateFrom').datepicker({
+            dateFormat: 'yy-mm-dd'
+        }).datepicker('setDate', 'today');
+        $('#dateTo').datepicker({
+            dateFormat: 'yy-mm-dd'
+        }).datepicker('setDate', 'today');
     });
 
-    //Load Customer
-    var ajax = new XMLHttpRequest();
-    ajax.open("GET", "/TopNotch/supplier/loadName", true);
-    ajax.send();
-
-    ajax.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            console.log(data);
-            var html = "";
-            for (var a = 0; a < data.length; a++) {
-                html += "<option value=" + data[a].id + ">";
-                html += data[a].fname + " " + data[a].lname;
-                html += "</option>";
-            }
-            document.getElementById("cmbSup").innerHTML += html;
-        }
-    };
-
-//Search 
-    $(document).on("click", "#btnSearch", function () {
+    //Search 
+    $(document).on("click", "#btnSearch", function() {
         document.getElementById("report").style.display = "block";
+
         var dateFrom = $('#dateFrom').val();
         var dateTo = $('#dateTo').val();
         var search = {
-            supplier : $('#cmbSup').val(),
             fromDate: $("#dateFrom").val(),
             toDate: $("#dateTo").val()
         };
         $.ajax({
-            url: "/TopNotch/report/supWisePayment",
+            url: "<?= APPROOT ?>/invoice/retrieveInvoiceItem",
             method: "POST",
-            data: {sData: search},
+            data: {
+                sData: search
+            },
             dataType: "JSON",
-            success: function (data) {
+            success: function(data) {
                 $('#data').empty();
                 console.log(data);
                 var html = "";
                 var total = 0;
                 for (var a = 0; a < data.length; a++) {
-                    total = total + (parseFloat(data[a].totalamount));
                     html += "<tr>";
-                    html += "<td>" + data[a].id + "</td>";
-                    html += "<td>" + formatDate(data[a].paydate) + "</td>";
-                    html += "<td>" + data[a].fname + " " + data[a].lname + "</td>";
-                    html += "<td class='text-right'>" + data[a].totalamount + ".00</td>";
+                    html += "<td>" + data[a].invoice_no + "</td>";
+                    html += "<td>" + formatDate(data[a].date) + "</td>";
+                    html += "<td>" + data[a].first_name + " " + data[a].middle_name + " " + data[a].last_name + "</td>";
+                    html += "<td>" + data[a].item_code + " - " + data[a].item_name + "</td>";
+                    html += "<td>" + data[a].category + "</td>";
+                    html += "<td class='text-right'>" + data[a].unit_price + ".00</td>";
                     html += "</tr>";
                 }
                 document.getElementById("data").innerHTML += html;
-                document.getElementById("total").innerHTML = total + ".00";
                 document.getElementById("date").innerHTML = "From: " +
-                        $('#dateFrom').val() + " To: " + $('#dateTo').val();
+                    $('#dateFrom').val() + " To: " + $('#dateTo').val();
             }
         });
     });
@@ -194,7 +173,7 @@
         return date = dd + "-" + mm + "-" + yyyy;
     }
 
-    $("#print").on('click', function () {
+    $("#print").on('click', function() {
         window.print();
     });
 </script>

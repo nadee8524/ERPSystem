@@ -13,8 +13,6 @@
  */
 class ItemController extends BaseController
 {
-
-    //put your code here
     public function newItem()
     {
         $this->loadView();
@@ -36,10 +34,10 @@ class ItemController extends BaseController
         $item->findList();
     }
 
-    public function loadItemID()
+    public function loadItem()
     {
         $item = new Item();
-        $item->loadID();
+        $item->loadItem();
     }
 
     public function loadCategory()

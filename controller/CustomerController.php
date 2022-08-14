@@ -13,8 +13,6 @@
  */
 class CustomerController extends BaseController
 {
-
-    //put your code here
     public function newCustomer()
     {
         $this->loadView();
@@ -29,13 +27,6 @@ class CustomerController extends BaseController
     {
         $customer = new Customer();
         $res = $customer->findList();
-    }
-
-    public function loadByName()
-    {
-        $customer = new Customer();
-        $name = $_POST['fname'];
-        $customer->findByField('fname', $name);
     }
 
     function loadDistrict()
